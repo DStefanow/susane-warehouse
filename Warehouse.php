@@ -1,5 +1,5 @@
 <?php
-include_once 'db.php';
+include_once 'DbConnection.php';
 
 class Warehouse
 {
@@ -85,14 +85,14 @@ class Warehouse
 
         $meters = intval($formatted);
         $centimeters = intval(($formatted - $meters) * 100);
-        $millimeters = (($formatted - $meters) * 100) % 10;
+        $millimeters = $dimension % 10;
 
         return "Meters: {$meters}; Centimeters: {$centimeters}; Millimeters: {$millimeters}";
     }
 
     public static function printDimensions()
     {
-        echo "Length: " . self::getLength() . "<br>";
-        echo "Width: " . self::getWidth() . "<br>";
+        echo "Length: " . self::getLength() . "<br />";
+        echo "Width: " . self::getWidth() . "<br />";
     }
 }
