@@ -1,5 +1,5 @@
 <?php
-include 'Warehouse.php';
+include_once 'Warehouse.php';
 
 define('QUERY_TABLE', "SELECT `height`, `length`, `width` 
               FROM `product`
@@ -7,6 +7,9 @@ define('QUERY_TABLE', "SELECT `height`, `length`, `width`
               ORDER BY `width` DESC;");
 
 try {
+    $connection = new DbConnection();
+    $db = $connection->getConnection();
+
     $stmt = $db->prepare(QUERY_TABLE);
     $stmt->execute();
 
@@ -15,7 +18,7 @@ try {
     findDimensions($dimensions);
 
 } catch (Exception $e){
-    echo $e->getMessage() . PHP_EOL;
+    echo $e->getMessage() . "<br />";
 }
 
 function findDimensions($dimensions){
